@@ -1,13 +1,10 @@
-import { request, makeRequest } from './request';
+import { request } from './request';
 
 class ClassAPI {
-    searchRepositories = (email, password) => request({
+    searchRepositories = (params) => request({
         url: 'search/repositories',
         method: 'GET',
-        data: {
-            email,
-            password,
-        },
+        params
     });
 }
 

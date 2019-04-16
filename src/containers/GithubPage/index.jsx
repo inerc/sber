@@ -2,6 +2,8 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
+
 import { tableGetRequest } from '../../actions/table';
 import FlowTable from '../../components/FlowTable';
 
@@ -17,11 +19,19 @@ export class GithubPage extends React.Component {
 
 
     componentDidMount(){
-        this.props.dispatch(tableGetRequest());
+        this.props.dispatch(tableGetRequest(
+            {
+                params: {
+                    q: 'node js',
+                    sort: 'stars',
+                    order: 'desc',
+                    created: `<${moment().subtract(1, 'months').format("YYYY-MM-DD")}`
+                }
+            }));
     }
 
     normalize = () => {
-        const { data } = this.props
+        const { data } = this.props;
         if (!data) return null;
         const tableData = [];
 
@@ -53,8 +63,7 @@ export class GithubPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    let data = state && state.table && state.table.items
-
+    let data = state && state.table && state.table.items;
     return { data }
 };
 

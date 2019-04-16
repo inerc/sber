@@ -4,8 +4,8 @@ import { tableGetSuccess } from '../../actions/table'
 import API from '../../API'
 
 
-function* getTableData(payload) {
-    const response = yield call(API.searchRepositories);
+function* getTableData({params}) {
+    const response = yield call(API.searchRepositories, params );
     yield put(tableGetSuccess(response));
 }
 
