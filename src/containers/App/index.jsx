@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
 import GithubPage from '../GithubPage';
 
 class App extends React.Component {
@@ -17,4 +18,5 @@ class App extends React.Component {
         );
     }
 }
+
 export default App;
